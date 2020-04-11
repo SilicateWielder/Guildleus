@@ -1,3 +1,5 @@
+const ver = "0.2 ALPHA";
+
 // Core Dependencies
 const Discord = require('discord.js');
 const fs = require('fs');
@@ -5,6 +7,7 @@ const fs = require('fs');
 // Aditional dependencies
 const configLoader = require('./lib/configloader.js');
 const displayManager = require('./lib/displayManager.js');
+const commandManager = require('./lib/commandManager.js');
 
 let windows = displayManager.windows;
 
@@ -37,6 +40,7 @@ devToken = 1234567890SomeTokenHereABCDEFGHJKLMNOPQRSTUVWXYZ`;
 
 // Now, we can trigger the configuration loader to run, 
 global.config = configLoader.loadAll(defaultConfigs);
+config.version = ver;
 Object.freeze(global.config);
 
 // Determine which login token to use.
@@ -53,13 +57,26 @@ Object.freeze(loginToken);
 const client = new Discord.Client();
 
 client.on('ready', () => {
-  //console.log(`Logged in as ${client.user.tag}!`);
+	displayManager.updateStatus('Version', config.version);
+	
+	let modeStatus = "NORMAL";
+	if(config.devmode)
+	{
+		modeStatus = "TESTING";
+	}
+	displayManager.updateStatus('Mode', modeStatus);
+	
+	
+	displayManager.updateStatus('Users', client.users.cache.size);
+	displayManager.updateStatus('Channels', client.channels.cache.size);
+	displayManager.updateStatus('Guilds', client.guilds.cache.size);
 });
 
 client.on('message', msg => {
-  if (msg.content === 'ping') {
-    msg.reply('Pong!');
-  }
+	if (msg.content === 'ping') {
+		msg.reply('Pong!');
+		displayManager.log('cmd', 'Command "' + msg.content + '" sent.');
+	}
 });
 
 displayManager.log('main',`Using token ${loginToken}`);
