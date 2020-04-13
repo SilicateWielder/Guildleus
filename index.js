@@ -2,14 +2,11 @@ const ver = "0.2 ALPHA";
 
 // Core Dependencies
 const Discord = require('discord.js');
-const fs = require('fs');
 
 // Aditional dependencies
 const configLoader = require('./lib/configloader.js');
 const displayManager = require('./lib/displayManager.js');
 const commandManager = require('./lib/commandManager.js');
-
-let windows = displayManager.windows;
 
 /* Define the defaults for our configuration files.
 We do this so that, if a guildleus bot, or the core is downloaded and run for the first time
