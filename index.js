@@ -45,7 +45,8 @@ const configLoader = require('./lib/configloader.js');
 const displayManager = require('./lib/displayManager.js');
 global.displayManager = displayManager;
 
-const commandManager = require('./lib/commandManager.js');
+global.commandManager = require('./lib/commandManager.js');
+global.processManager = require('./lib/processManager.js'); // Testing.
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
