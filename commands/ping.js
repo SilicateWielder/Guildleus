@@ -1,5 +1,7 @@
 exports.properties = {
-	"synonyms": ['latency'] 
+	"synonyms": ['latency'],
+	"helpShort": 'Provides the current latency of the bot',
+	"helpLong": 'Provides the current latancy of the bot, which is the time it takes for the bot to see and respond to a message'
 }
 
 exports.init = function() {
