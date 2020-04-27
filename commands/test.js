@@ -11,7 +11,12 @@ exports.init = function() {
 exports.run = async function(client, data) {
 	let message = data.message;
 	
-	let process = processManager.create();
+	function sample (message = data.message) {
+		message.channel.send("babump");
+	}
+
+	let endTime = new dateSignature();
+	let process = processManager.create(data, 15, endTime, sample);
 	
 	if(typeof process == 'object')
 	{

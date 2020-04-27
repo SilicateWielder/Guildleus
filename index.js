@@ -42,6 +42,8 @@ const configLoader = require('./lib/configloader.js');
 	config.version = ver;
 	Object.freeze(global.config);
 
+global.dateSignature = require('./lib/util/datesig.js').main;
+
 const displayManager = require('./lib/displayManager.js');
 global.displayManager = displayManager;
 
