@@ -42,11 +42,10 @@ const configLoader = require('./lib/configloader.js');
 	config.version = ver;
 	Object.freeze(global.config);
 
-global.dateSignature = require('./lib/util/datesig.js').main;
-
 const displayManager = require('./lib/displayManager.js');
 global.displayManager = displayManager;
 
+global.DateSignature = require('./lib/util/datesig.js').main;
 global.commandManager = require('./lib/commandManager.js');
 global.processManager = require('./lib/processManager.js'); // Testing.
 
