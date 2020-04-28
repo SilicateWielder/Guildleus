@@ -19,7 +19,13 @@ devmode = true
 prefix = ~
 
 # Name of the bot
-name = SomeBot`;
+name = SomeBot
+
+# Default command path, change this if you'd like to keep your commands somewhere else.
+commandPath = ./commands
+
+# Log file path.
+logPath = ./log.txt`;
 
 
 defaultConfigs['./tokens.properties'] = `# Login token to use with release versions
@@ -36,6 +42,7 @@ const Discord = require('discord.js');
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Aditional dependencies
+const fs = require('fs');
 const configLoader = require('./lib/configloader.js');
 	// Now, we can pause loading out config files to trigger the configuration loader to run.
 	global.config = configLoader.loadAll(defaultConfigs);
@@ -48,6 +55,11 @@ global.displayManager = displayManager;
 global.DateSignature = require('./lib/util/datesig.js').main;
 global.commandManager = require('./lib/commandManager.js');
 global.processManager = require('./lib/processManager.js'); // Testing.
+
+// Error thingymabob
+fs.truncate(config.logPath, 0, function(){});
+global.errorDump = fs.createWriteStream(config.logPath, {flags:'a'});
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

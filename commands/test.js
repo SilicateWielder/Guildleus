@@ -1,7 +1,7 @@
 exports.properties = {
 	"devOnly": true,
-	"helpShort": 'Provides the current latency of the bot',
-	"helpLong": 'Provides the current latancy of the bot, which is the time it takes for the bot to see and respond to a message'
+	"helpShort": 'A sample command to testing the process manager.',
+	"helpLong": 'A sample command to testing the process manager. Allows for creating and deleting of processes'
 }
 
 exports.init = function() {
@@ -12,14 +12,19 @@ exports.run = async function(command, data) {
 	let message = data.message;
 	let args = command.args;
 	
+	let meta = {
+		count: 0
+	}
+	
 	if(args[0] == 'create')
 		{
-		function sample (message = data.message) {
-			message.channel.send("babump");
+		function sample () {
+			data.message.channel.send("babump " + arguments[0].count);
+			arguments[0].count += 1;
 		}
 
 		let endTime = new DateSignature();
-		let process = processManager.create(data, 15, endTime, sample);
+		let process = processManager.create(data, 5, endTime, sample, meta);
 		
 		if(typeof process == 'object')
 		{
