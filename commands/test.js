@@ -24,7 +24,7 @@ exports.run = async function(command, data) {
 		}
 
 		let endTime = new DateSignature();
-		let process = processManager.create(data, 5, endTime, sample, meta);
+		let process = processManager.create(data, 'test', endTime, sample, meta);
 		
 		if(typeof process == 'object')
 		{
@@ -32,8 +32,12 @@ exports.run = async function(command, data) {
 		} else {
 			message.channel.send("ERROR: " + process);
 		}
+		
 	} else if (args[0] == 'delete' && args[1] != undefined) {
 		processManager.remove(args[1]);
+		
+	} else if (args[0] == 'trigger' && args[1] != undefined) {
+		processManager.trigger(data, args[1]);
 	}
 }
 
