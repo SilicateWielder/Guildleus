@@ -1,4 +1,5 @@
 exports.properties = {
+	"requirements": ['message'],
 	"devOnly": true,
 	"helpShort": 'A sample command to testing the process manager.',
 	"helpLong": 'A sample command to testing the process manager. Allows for creating and deleting of processes'
@@ -17,7 +18,7 @@ exports.run = async function(command, data) {
 	}
 	
 	if(args[0] == 'create')
-		{
+	{
 		function sample () {
 			data.message.channel.send("babump " + arguments[0].count);
 			arguments[0].count += 1;
@@ -42,6 +43,7 @@ exports.run = async function(command, data) {
 }
 
 exports.queries = [
-	'ping',
-	'latency',
+	'test create',
+	'test trigger 0',
+	'test trigger test'
 ];

@@ -112,3 +112,4 @@ temp/
 
 # Guildleus configuration files.
 *.properties
+commands/music.js
